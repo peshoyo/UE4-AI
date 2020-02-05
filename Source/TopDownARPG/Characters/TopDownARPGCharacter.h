@@ -62,5 +62,9 @@ private:
 	void TakeAnyDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigateBy, AActor* DamageCauser);
 
 	void Death();
+
+	class UAIPerceptionStimuliSourceComponent* Stimulus;
+
+	void SetupStimulus();
 };
 

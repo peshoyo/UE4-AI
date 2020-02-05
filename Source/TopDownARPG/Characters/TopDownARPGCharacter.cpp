@@ -13,6 +13,8 @@
 #include "Engine/World.h"
 #include "TopDownARPG.h"
 #include "GameModes/TopDownARPGGameMode.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception//AISense_Sight.h"
 
 ATopDownARPGCharacter::ATopDownARPGCharacter()
 {
@@ -59,6 +61,8 @@ ATopDownARPGCharacter::ATopDownARPGCharacter()
 	PrimaryActorTick.bStartWithTickEnabled = true;
 
 	OnTakeAnyDamage.AddDynamic(this, &ATopDownARPGCharacter::TakeAnyDamage);
+
+	SetupStimulus();
 }
 
 void ATopDownARPGCharacter::BeginPlay()
@@ -121,4 +125,12 @@ void ATopDownARPGCharacter::Death()
 	{
 		GameMode->EndGame(false);
 	}
+}
+
+void ATopDownARPGCharacter::SetupStimulus()
+{
+	Stimulus = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
+	Stimulus->RegisterForSense(TSubclassOf<UAISense_Sight>());
+	Stimulus->RegisterWithPerceptionSystem();
+
 }

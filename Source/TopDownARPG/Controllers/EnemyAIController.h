@@ -17,15 +17,23 @@ class TOPDOWNARPG_API AEnemyAIController : public AAIController
 	AEnemyAIController();
 	virtual void OnPossess(APawn* InPawn) override;
 
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
+	class UBlackboardComponent* BlackboardComponent;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
+	class UBehaviorTreeComponent* BehaviourTreeComponent;
+
+	//UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
 	UPROPERTY(EditDefaultsOnly)
 	class UBehaviorTree* BehaviourTree;
 
-	UPROPERTY()
-	class UBlackboardComponent* BlackboardComponent;
-
-	UPROPERTY()
-	class UBehaviorTreeComponent* BehaviourTreeComponent;
-
 public:
+	//AEnemyAIController(FObjectInitializer const& object_initializer = FObjectInitializer::Get());
+
+	//void BeginPlay() override;
+
+	class UBlackboardComponent* getBlackboard() const;
+
 	void ActivateAbility(FVector AimLocation);
 };

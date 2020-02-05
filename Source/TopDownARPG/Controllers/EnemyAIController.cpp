@@ -25,6 +25,7 @@ void AEnemyAIController::OnPossess(APawn* Pawn)
 	}
 }
 
+
 void AEnemyAIController::ActivateAbility(FVector AimLocation)
 {
 	ATopDownARPGCharacter* PlayerCharacter = Cast<ATopDownARPGCharacter>(GetPawn());

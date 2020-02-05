@@ -3,12 +3,14 @@
 	"EngineAssociation": "4.23",
 	"Category": "",
 	"Description": "",
-	"Modules": [
+	"Modules":
+	[
 		{
 			"Name": "TopDownARPG",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
-			"AdditionalDependencies": [
+			"AdditionalDependencies":
+			[
 				"Engine",
 				"AIModule"
 			]

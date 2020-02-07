@@ -16,6 +16,10 @@ public class TopDownARPG : ModuleRules
             "HeadMountedDisplay",
             "NavigationSystem",
             "AIModule",
-            "GameplayTasks" });
+            "GameplayTasks",
+            "UMG",
+            "Slate",
+            "SlateCore"
+        });
     }
 }

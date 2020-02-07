@@ -4,26 +4,42 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Abilities/Ability.h"
+#include "DataTables/TopDownARPGCharacterStruct.h"
 #include "Guard.generated.h"
 
 UCLASS()
 class TOPDOWNARPG_API AGuard : public ACharacter
 {
 	GENERATED_BODY()
-
-public:
-	// Sets default values for this character's properties
-	AGuard();
-
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
+	// Sets default values for this character's properties
+	AGuard();
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UPROPERTY(EditAnywhere, Category = "GuardHealth")
+	float MaxHealth;
+
+	UPROPERTY(EditAnywhere, Category = "GuardHealth")
+	float Health;
+
+	UFUNCTION(BlueprintPure, Category = "GuardHealth")
+	float GetHealth()const;
+
+	UFUNCTION()
+	void TakeAnyDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigateBy, AActor* DamageCauser);
+
+	void Death();
+
+private:
 
 };

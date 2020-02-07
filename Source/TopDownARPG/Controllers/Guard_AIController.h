@@ -23,6 +23,7 @@ public:
 
 	class UBlackboardComponent* GetBlackboard() const;
 
+
 private:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
 	class UBehaviorTreeComponent* BehaviorTreeComponent;

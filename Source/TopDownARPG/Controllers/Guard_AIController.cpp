@@ -64,11 +64,11 @@ void AGuard_AIController::SetupPerceptionSystem()
 	//Create and initialise sight configuration object
 	Sight_Config = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("Sight Config"));
 	SetPerceptionComponent(*CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("Perception Component")));
-	Sight_Config->SightRadius = 500.0f;
+	Sight_Config->SightRadius = 600.0f;
 	Sight_Config->LoseSightRadius = Sight_Config->SightRadius + 50.0f;
-	Sight_Config->PeripheralVisionAngleDegrees = 90.0f;
+	Sight_Config->PeripheralVisionAngleDegrees = 100.0f;
 	Sight_Config->SetMaxAge(5.0f);
-	Sight_Config->AutoSuccessRangeFromLastSeenLocation = 500.0f;
+	Sight_Config->AutoSuccessRangeFromLastSeenLocation = 600.0f;
 	Sight_Config->DetectionByAffiliation.bDetectEnemies = true;
 	Sight_Config->DetectionByAffiliation.bDetectFriendlies = true;
 	Sight_Config->DetectionByAffiliation.bDetectNeutrals = true;

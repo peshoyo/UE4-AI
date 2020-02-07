@@ -6,6 +6,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Characters/TopDownARPGCharacter.h"
+#include "Characters/Guard.h"
 #include "TopDownARPG.h"
 
 // Sets default values
@@ -46,6 +47,11 @@ void AProjectile::OnOverlap(UPrimitiveComponent* OverlappedComp, AActor* Other, 
 	if (IsValid(Character))
 	{
 		Character->TakeDamage(Damage, FDamageEvent(UDamageType::StaticClass()), nullptr, this);
+	}
+	AGuard* Guard = Cast<AGuard>(Other);
+	if (IsValid(Guard))
+	{
+		Guard->TakeDamage(Damage, FDamageEvent(UDamageType::StaticClass()), nullptr, this);
 	}
 
 	if (Destroy() == false)

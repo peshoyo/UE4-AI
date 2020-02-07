@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Abilities/Ability.h"
+#include "AI/PatrolPath.h"
 #include "DataTables/TopDownARPGCharacterStruct.h"
 #include "Guard.generated.h"
 
@@ -40,6 +41,17 @@ public:
 
 	void Death();
 
-private:
+	UPROPERTY()
+	TArray<UAbility*> AbilityInstances;
 
+	APatrolPath* GetPatrolPath();
+private:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
+		APatrolPath* PatrolPath;
+
+	UPROPERTY(EditAnywhere)
+		TArray<TSubclassOf<UAbility>> AbilityTemplates;
+
+	UPROPERTY(EditAnywhere)
+		FDataTableRowHandle CharacterStatsRow;
 };

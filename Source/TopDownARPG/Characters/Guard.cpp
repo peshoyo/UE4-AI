@@ -25,8 +25,6 @@ AGuard::AGuard()
 // Called when the game starts or when spawned
 void AGuard::BeginPlay()
 {
-	MaxHealth = 100.0f;
-	Health = MaxHealth;
 	Super::BeginPlay();
 	UMaterialInstanceDynamic* const MaterialInstance = UMaterialInstanceDynamic::Create(GetMesh()->GetMaterial(0), this);
 	if (MaterialInstance)
@@ -34,7 +32,21 @@ void AGuard::BeginPlay()
 		MaterialInstance->SetVectorParameterValue("BodyColor", FLinearColor(1.0f, 0.0f, 0.0f, 1.0f));
 		GetMesh()->SetMaterial(0, MaterialInstance);
 	}
-	
+
+	FTopDownARPGCharacterStruct* CharacterStruct = CharacterStatsRow.GetRow<FTopDownARPGCharacterStruct>(TEXT(""));
+
+	if (CharacterStruct == nullptr)
+	{
+		UE_LOG(LogTopDownARPG, Error, TEXT("ATopDownARPGCharacter::BeginPlay CharacterStruct != nullptr"));
+		return;
+	}
+
+	Health = CharacterStruct->MaximumHealth;
+
+	for (const TSubclassOf<UAbility>Template : CharacterStruct->AbilityTemplates)
+	{
+		AbilityInstances.Add(NewObject<UAbility>(this, Template));
+	}
 }
 
 // Called every frame
@@ -61,6 +73,10 @@ void AGuard::Death()
 		Movement->MaxWalkSpeed = 0.0f;
 		Movement->bOrientRotationToMovement = false;
 
+}
+APatrolPath* AGuard::GetPatrolPath()
+{
+	return PatrolPath;
 }
 // Called to bind functionality to input
 void AGuard::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

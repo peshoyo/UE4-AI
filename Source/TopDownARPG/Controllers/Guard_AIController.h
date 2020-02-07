@@ -23,6 +23,7 @@ public:
 
 	class UBlackboardComponent* GetBlackboard() const;
 
+	void ActivateAbility(FVector AimLocation);
 
 private:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))

@@ -2,24 +2,25 @@
 
 
 #include "BTTask_ActivateSkill.h"
-#include "Controllers/EnemyAIController.h"
+#include "Controllers/Guard_AIController.h"
+
 
 EBTNodeResult::Type UBTTask_ActivateSkill::ExecuteTask(UBehaviorTreeComponent & OwnerComp, uint8 * NodeMemory)
 {
-	AEnemyAIController* EnemyAIController = Cast<AEnemyAIController>(OwnerComp.GetOwner());
-	if (IsValid(EnemyAIController) == false)
+	AGuard_AIController * Controller = Cast<AGuard_AIController>(OwnerComp.GetOwner());
+	if (IsValid(Controller) == false)
 	{
 		return EBTNodeResult::Failed;
 	}
 	
-	APawn* EnemyPawn = EnemyAIController->GetPawn();
+	APawn* EnemyPawn = Controller->GetPawn();
 	if (IsValid(EnemyPawn) == false)
 	{
 		return EBTNodeResult::Failed;
 	}
 
 	FVector AimLocation = EnemyPawn->GetActorLocation() + EnemyPawn->GetActorForwardVector() * 100.0f;
-	EnemyAIController->ActivateAbility(AimLocation);
+	Controller->ActivateAbility(AimLocation);
 
 	return EBTNodeResult::Succeeded;
 }

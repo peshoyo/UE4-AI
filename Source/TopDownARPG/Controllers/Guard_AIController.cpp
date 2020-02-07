@@ -14,6 +14,8 @@
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 #include "GameFramework/Character.h"
+#include "TopDownARPG.h"
+#include "Characters/Guard.h"
 
 
 AGuard_AIController::AGuard_AIController(FObjectInitializer const& ObjectInitializer)
@@ -47,6 +49,22 @@ void AGuard_AIController::OnPossess(APawn * const InPawn)
 UBlackboardComponent * AGuard_AIController::GetBlackboard() const
 {
 	return Blackboard;
+}
+
+void AGuard_AIController::ActivateAbility(FVector AimLocation)
+{
+	AGuard* PlayerCharacter = Cast<AGuard>(GetPawn());
+	if (IsValid(PlayerCharacter) == false)
+	{
+		UE_LOG(LogTopDownARPG, Error, TEXT("ATopDownARPGPlayerController::ActivateAbility1 IsValid(PlayerCharacter) == false"));
+		return;
+	}
+
+	UAbility* Ability = PlayerCharacter->AbilityInstances[0];
+	if (IsValid(Ability))
+	{
+		Ability->Activate(AimLocation);
+	}
 }
 
 

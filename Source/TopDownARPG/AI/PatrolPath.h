@@ -15,12 +15,14 @@ public:
 	// Sets default values for this actor's properties
 	APatrolPath();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	UFUNCTION()
+	FVector GetPatrolPoints(int const index)const;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	int num() const;
+
+private:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta = (MakeEditWidget = "true", AllowPrivateAccess = "true"))
+	TArray<FVector> patrol_points;
+
 
 };

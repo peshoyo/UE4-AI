@@ -7,21 +7,16 @@
 APatrolPath::APatrolPath()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 }
 
-// Called when the game starts or when spawned
-void APatrolPath::BeginPlay()
+FVector APatrolPath::GetPatrolPoints(int const index) const
 {
-	Super::BeginPlay();
-	
+	return patrol_points[index];
 }
 
-// Called every frame
-void APatrolPath::Tick(float DeltaTime)
+int APatrolPath::num() const
 {
-	Super::Tick(DeltaTime);
-
+	return patrol_points.Num();
 }
-

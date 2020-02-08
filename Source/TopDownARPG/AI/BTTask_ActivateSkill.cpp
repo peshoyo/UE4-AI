@@ -20,7 +20,7 @@ EBTNodeResult::Type UBTTask_ActivateSkill::ExecuteTask(UBehaviorTreeComponent & 
 	}
 
 	FVector AimLocation = EnemyPawn->GetActorLocation() + EnemyPawn->GetActorForwardVector() * 100.0f;
-	Controller->ActivateAbility(AimLocation);
+	Controller->ActivateAbility(AimLocation, index);
 
 	return EBTNodeResult::Succeeded;
 }

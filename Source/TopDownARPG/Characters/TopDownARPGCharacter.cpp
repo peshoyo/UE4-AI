@@ -15,6 +15,7 @@
 #include "GameModes/TopDownARPGGameMode.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception//AISense_Sight.h"
+#include "Engine/Engine.h"
 
 ATopDownARPGCharacter::ATopDownARPGCharacter()
 {
@@ -109,7 +110,14 @@ void ATopDownARPGCharacter::TakeAnyDamage(AActor* DamagedActor, float Damage, co
 	Health -= Damage;
 	if (Health <= 0.0f)
 	{
+		
 		Death();
+		GetWorld()->GetAuthGameMode()->Reset();
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(0, 0.5f, FColor::Yellow, TEXT("You died."));
+		}
+
 	}
 }
 

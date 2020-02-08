@@ -29,11 +29,6 @@ class TOPDOWNARPG_API AEnemyAIController : public AAIController
 	class UBehaviorTree* BehaviourTree;
 
 public:
-	//AEnemyAIController(FObjectInitializer const& object_initializer = FObjectInitializer::Get());
-
-	//void BeginPlay() override;
-
-	class UBlackboardComponent* getBlackboard() const;
 
 	void ActivateAbility(FVector AimLocation);
 };

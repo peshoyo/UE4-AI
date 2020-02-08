@@ -18,18 +18,20 @@ class TOPDOWNARPG_API AGuard_AIController : public AAIController
 public:
 	AGuard_AIController(FObjectInitializer const& ObjectInitializer = FObjectInitializer::Get());
 
+
 	void BeginPlay() override;
 	void OnPossess(APawn* const InPawn) override;
 
 	class UBlackboardComponent* GetBlackboard() const;
 
-	void ActivateAbility(FVector AimLocation);
+	void ActivateAbility(FVector AimLocation, int index);
 
 private:
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
 	class UBehaviorTreeComponent* BehaviorTreeComponent;
 
-	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
+	//UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly)
 	class UBehaviorTree* BehaviorTree;
 
 	class UBlackboardComponent* Blackboard;

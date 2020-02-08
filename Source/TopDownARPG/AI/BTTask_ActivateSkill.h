@@ -15,4 +15,8 @@ class TOPDOWNARPG_API UBTTask_ActivateSkill : public UBTTask_BlackboardBase
 	GENERATED_BODY()
 	
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
+
+private:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta = (AllowPrivateAccess = "true"))
+		int index = 0;
 };

@@ -57,6 +57,7 @@ void AGuard::Tick(float DeltaTime)
 }
 void AGuard::TakeAnyDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigateBy, AActor* DamageCauser)
 {
+	
 	UE_LOG(LogTopDownARPG, Display, TEXT("AGuard::TakeAnyDamage current health = %f"), (Health - Damage));
 	Health -= Damage;
 	if (Health <= 0.0f)

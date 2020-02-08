@@ -4,6 +4,7 @@
 #include "ChangeSpeed.h"
 #include "Characters/Guard.h"
 #include "Controllers/Guard_AIController.h"
+
 #include "GameFramework/CharacterMovementComponent.h"
 UChangeSpeed::UChangeSpeed()
 {

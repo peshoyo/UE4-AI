@@ -22,7 +22,10 @@ EBTNodeResult::Type UFindPlayerLocation::ExecuteTask(UBehaviorTreeComponent & Ow
 {
 	//Get player character and guard controller.
 	ACharacter* const Player = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+	if (Player == nullptr) { return EBTNodeResult::Failed; }
+
 	auto const Controller = Cast<AGuard_AIController>(OwnerComponent.GetAIOwner());
+	if (Controller == nullptr) { return EBTNodeResult::Failed; }
 
 
 	FVector const PlayerLocation = Player->GetActorLocation();

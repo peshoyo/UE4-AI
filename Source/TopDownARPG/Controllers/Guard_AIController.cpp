@@ -30,11 +30,15 @@ AGuard_AIController::AGuard_AIController(FObjectInitializer const& ObjectInitial
 	SetupPerceptionSystem();
 }
 
+
 void AGuard_AIController::BeginPlay()
 {
 	Super::BeginPlay();
 	RunBehaviorTree(BehaviorTree);
 	BehaviorTreeComponent->StartTree(*BehaviorTree);
+
+	//float Percentage = 100;
+	//GetBlackboard()->SetValueAsFloat(bb_keys::health_percentage, Percentage);
 }
 
 void AGuard_AIController::OnPossess(APawn * const InPawn)
@@ -51,7 +55,7 @@ UBlackboardComponent * AGuard_AIController::GetBlackboard() const
 	return Blackboard;
 }
 
-void AGuard_AIController::ActivateAbility(FVector AimLocation)
+void AGuard_AIController::ActivateAbility(FVector AimLocation, int index)
 {
 	AGuard* PlayerCharacter = Cast<AGuard>(GetPawn());
 	if (IsValid(PlayerCharacter) == false)
@@ -60,7 +64,7 @@ void AGuard_AIController::ActivateAbility(FVector AimLocation)
 		return;
 	}
 
-	UAbility* Ability = PlayerCharacter->AbilityInstances[0];
+	UAbility* Ability = PlayerCharacter->AbilityInstances[index];
 	if (IsValid(Ability))
 	{
 		Ability->Activate(AimLocation);

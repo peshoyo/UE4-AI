@@ -34,7 +34,7 @@ bool UBoltAbility::Activate(FVector AimLocation)
 	Direction.Z = 0.0f;
 	Direction.Normalize();
 
-	FVector SpawnLocation = Owner->GetActorLocation() + Direction * 100.0f;
+	FVector SpawnLocation = Owner->GetActorLocation() + Direction * 150.0f;
 
 	AActor* Projectile = World->SpawnActor<AActor>(ProjectileClass, SpawnLocation, Direction.Rotation(), SpawnParameters);
 	if (IsValid(Projectile) == false)
